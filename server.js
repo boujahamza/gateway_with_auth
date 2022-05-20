@@ -45,7 +45,7 @@ app.post("/register", async (req, res) => {
         const user = await User.create({
             username,
             email: email.toLowerCase(),
-            password: encryptedPassword,
+            password: hashedPassword,
         });
 
         const token = jwt.sign(
