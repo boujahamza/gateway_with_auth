@@ -7,3 +7,5 @@ const userSchema = new mongoose.Schema({
     role: { type: String, default: "normal" }, // normal role by default, admin for higher privileges
     token: { type: String }
 })
+
+module.exports = mongoose.model("user", userSchema);
