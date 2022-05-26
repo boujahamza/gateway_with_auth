@@ -6,7 +6,7 @@ const httpProxy = require('express-http-proxy');
 
 const auth = require('../middleware/auth');
 
-const gameReviewsProxy = httpProxy("http://localhost:5000", {
+const gameReviewsProxy = httpProxy("http://localhost:4001", {
     proxyReqOptDecorator: function (proxyReqOpts, srcReq) {
         if(srcReq.user) {
             proxyReqOpts.headers["user"] = JSON.stringify(srcReq.user);
@@ -15,28 +15,30 @@ const gameReviewsProxy = httpProxy("http://localhost:5000", {
     }
 })
 
-router.get("/games", (req,res,next)=>{
+router.get("/", (req,res,next)=>{
     gameReviewsProxy(req,res,next);
 });
 
-router.get("/games/:id", (req,res,next)=>{
+router.get("/:id", (req,res,next)=>{
     gameReviewsProxy(req,res,next);
 });
 
-router.get("/games/:id/reviews",(req,res,next)=>{
+router.get("/:id/reviews",(req,res,next)=>{
     gameReviewsProxy(req,res,next);
 
 })
 
-router.post("/games/:id/reviews", auth,(req,res,next)=>{
-    gameReviewsProxy(req,res,next);
-})
-
-router.post("/games", auth,(req,res,next)=>{ //Need to add middleware to validate role
+router.post("/:id/reviews", auth,(req,res,next)=>{
     gameReviewsProxy(req,res,next);
 });
 
-router.delete("/games/:id", auth,(req,res,next)=>{
+const validateRole = require("../middleware/roleValidation");
+
+router.post("/", auth, validateRole,(req,res,next)=>{
+    gameReviewsProxy(req,res,next);
+});
+
+router.delete("/:id", auth,(req,res,next)=>{
     gameReviewsProxy(req,res,next);
 })
 
