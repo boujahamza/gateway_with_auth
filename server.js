@@ -7,9 +7,20 @@ const cors = require("cors");
 const express = require('express');
 
 const app = express();
+const router = require('./routes/articlesRoter.js');
+const gameRouter = require('./routes/gameReviewsRouter.js');
+
 
 //Cors rule
+
 app.use(cors());
+
+app.use('/article',router.ArticleRouter);
+app.use('/images',router.ImageRouter);
+app.use('/events',router.EventRouter);
+app.use('/games',gameRouter);
+
+
 
 app.use(express.json());
 
@@ -99,7 +110,6 @@ app.post("/login", async (req, res) => {
             );
 
             user.token = token;
-
 
             res.status(200).json({
                 "user": user,

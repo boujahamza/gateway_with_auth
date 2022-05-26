@@ -19,23 +19,25 @@ router.get("/games", (req,res,next)=>{
     gameReviewsProxy(req,res,next);
 });
 
-app.get("/games/:id", (req,res,next)=>{
+router.get("/games/:id", (req,res,next)=>{
     gameReviewsProxy(req,res,next);
 });
 
-app.get("/games/:id/reviews",(req,res,next)=>{
+router.get("/games/:id/reviews",(req,res,next)=>{
     gameReviewsProxy(req,res,next);
 
 })
 
-app.post("/games/:id/reviews", auth,(req,res,next)=>{
+router.post("/games/:id/reviews", auth,(req,res,next)=>{
     gameReviewsProxy(req,res,next);
 })
 
-app.post("/games", auth,(req,res,next)=>{ //Need to add middleware to validate role
+router.post("/games", auth,(req,res,next)=>{ //Need to add middleware to validate role
     gameReviewsProxy(req,res,next);
 });
 
-app.delete("/games/:id", auth,(req,res,next)=>{
+router.delete("/games/:id", auth,(req,res,next)=>{
     gameReviewsProxy(req,res,next);
 })
+
+module.exports=router;
