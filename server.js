@@ -29,6 +29,22 @@ let sessionLength = "1h";
 
 const User = require("./model/user");
 
+//Check if admin user exists. If not, create one
+async function createAdmin(){
+    var admin = await User.findOne({username:"admin", email:"admin"})
+    if(!admin){
+        await User.create({
+            username:"admin",
+            email:"admin",
+            password: await bcrypt.hash("admin", 10),
+            role:"admin"
+        }).then(value => console.log("admin created"), error => {console.log(error)});
+    }
+}
+
+createAdmin();
+//---------------------------------------
+
 app.post("/register", async (req, res) => {
     try {
         const { username, email, password } = req.body;
