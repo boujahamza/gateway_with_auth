@@ -9,6 +9,7 @@ const express = require('express');
 const app = express();
 const router = require('./routes/articlesRouter.js');
 const gameRouter = require('./routes/gameReviewsRouter.js');
+const userInfoRouter = require("./routes/userInfoRouter");
 
 
 //Cors rule
@@ -19,6 +20,7 @@ app.use('/article',router.ArticleRouter);
 app.use('/images',router.ImageRouter);
 app.use('/events',router.EventRouter);
 app.use('/games',gameRouter);
+app.use('/user',userInfoRouter);
 
 
 
