@@ -7,8 +7,9 @@ const cors = require("cors");
 const express = require('express');
 
 const app = express();
-const router = require('./routes/articlesRoter.js');
+const router = require('./routes/articlesRouter.js');
 const gameRouter = require('./routes/gameReviewsRouter.js');
+const userInfoRouter = require("./routes/userInfoRouter");
 
 
 //Cors rule
@@ -19,6 +20,7 @@ app.use('/article',router.ArticleRouter);
 app.use('/images',router.ImageRouter);
 app.use('/events',router.EventRouter);
 app.use('/games',gameRouter);
+app.use('/user',userInfoRouter);
 
 
 
@@ -28,6 +30,22 @@ app.use(express.json());
 let sessionLength = "1h";
 
 const User = require("./model/user");
+
+//Check if admin user exists. If not, create one
+async function createAdmin(){
+    var admin = await User.findOne({username:"admin", email:"admin"})
+    if(!admin){
+        await User.create({
+            username:"admin",
+            email:"admin",
+            password: await bcrypt.hash("admin", 10),
+            role:"admin"
+        }).then(value => console.log("admin created"), error => {console.log(error)});
+    }
+}
+
+createAdmin();
+//---------------------------------------
 
 app.post("/register", async (req, res) => {
     try {
