@@ -31,8 +31,9 @@ ImageRouter
     .post("/images", (req, res, next) => {Proxy(req, res, next); })
 
 EventRouter
- .get('/events',(req, res, next) => { Proxy(req, res, next); })
+ .get('/events/:user_id',(req, res, next) => { Proxy(req, res, next); })
  .post("/events", (req, res, next) => {Proxy(req, res, next); })
+ .post("/events/:event_id", (req, res, next) => {Proxy(req, res, next); })
 
 
 module.exports = {
