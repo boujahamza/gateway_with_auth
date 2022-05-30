@@ -31,6 +31,7 @@ let sessionLength = "1h";
 
 const User = require("./model/user");
 const req = require("express/lib/request");
+const { header } = require("express/lib/request");
 
 //Check if admin user exists. If not, create one
 async function createAdmin(){
@@ -146,7 +147,7 @@ app.post("/login", async (req, res) => {
 app.get("/:user_id/username",async (req,res) => {
     let user = await User.findById(req.params.user_id);
     if(user){
-        res.status(200).json({username: user.username})
+        res.status(200).json({username:user.username});
     }else{
         req.status(400).send("user not found");
     }
