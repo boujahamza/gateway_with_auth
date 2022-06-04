@@ -42,4 +42,8 @@ router.delete("/:id", auth,(req,res,next)=>{
     gameReviewsProxy(req,res,next);
 })
 
+router.get("count", auth, validateRole, (req,res,next) => {
+    gameReviewsProxy(req,res,next);
+})
+
 module.exports=router;
