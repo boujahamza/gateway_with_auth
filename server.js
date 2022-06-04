@@ -21,6 +21,7 @@ app.use('/images',router.ImageRouter);
 app.use('/events',router.EventRouter);
 app.use('/games',gameRouter);
 app.use('/user',userInfoRouter);
+app.use('/search', searchRouter);
 
 
 
