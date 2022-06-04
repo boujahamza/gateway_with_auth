@@ -10,6 +10,7 @@ const app = express();
 const router = require('./routes/articlesRouter.js');
 const gameRouter = require('./routes/gameReviewsRouter.js');
 const userInfoRouter = require("./routes/userInfoRouter");
+const searchRouter = require("./routes/searchRouter");
 
 
 //Cors rule
@@ -21,6 +22,7 @@ app.use('/images',router.ImageRouter);
 app.use('/events',router.EventRouter);
 app.use('/games',gameRouter);
 app.use('/user',userInfoRouter);
+app.use('/search', searchRouter);
 
 
 
@@ -140,6 +142,24 @@ app.post("/login", async (req, res) => {
     } catch (err) {
         console.log(err);
     }
+});
+
+app.get("/:user_id/username",async (req,res) => {
+    let user = await User.findById(req.params.user_id);
+    if(user){
+        res.status(200).json({username:user.username});
+    }else{
+        req.status(400).send("user not found");
+    }
+})
+
+const auth = require("./middleware/auth");
+const validateRole = require("./middleware/roleValidation");
+
+app.get("/users", auth, validateRole, async (req,res)=> {
+    console.log("recieved request for number of users");
+    const number = await User.find().count();
+    res.status(200).send(number.toString());
 });
 
 const { API_PORT } = process.env;
