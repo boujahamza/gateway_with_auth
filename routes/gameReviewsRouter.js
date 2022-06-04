@@ -16,7 +16,11 @@ const gameReviewsProxy = httpProxy("http://localhost:4001", {
     }
 })
 
-router.get("/count", auth, validateRole, (req,res,next) => {
+router.get("/count/games", auth, validateRole, (req,res,next) => {
+    gameReviewsProxy(req,res,next);
+})
+
+router.get("/count/reviews", auth, validateRole, (req,res,next) => {
     gameReviewsProxy(req,res,next);
 })
 
