@@ -5,6 +5,7 @@ const router = express.Router();
 const httpProxy = require('express-http-proxy');
 
 const auth = require('../middleware/auth');
+const validateRole = require("../middleware/roleValidation");
 
 const gameReviewsProxy = httpProxy("http://localhost:4001", {
     proxyReqOptDecorator: function (proxyReqOpts, srcReq) {
@@ -13,6 +14,10 @@ const gameReviewsProxy = httpProxy("http://localhost:4001", {
         }
         return proxyReqOpts;
     }
+})
+
+router.get("/count", auth, validateRole, (req,res,next) => {
+    gameReviewsProxy(req,res,next);
 })
 
 router.get("/", (req,res,next)=>{
@@ -32,7 +37,6 @@ router.post("/:id/reviews", auth,(req,res,next)=>{
     gameReviewsProxy(req,res,next);
 });
 
-const validateRole = require("../middleware/roleValidation");
 
 router.post("/", auth, validateRole,(req,res,next)=>{
     gameReviewsProxy(req,res,next);
@@ -42,8 +46,5 @@ router.delete("/:id", auth,(req,res,next)=>{
     gameReviewsProxy(req,res,next);
 })
 
-router.get("count", auth, validateRole, (req,res,next) => {
-    gameReviewsProxy(req,res,next);
-})
 
 module.exports=router;
