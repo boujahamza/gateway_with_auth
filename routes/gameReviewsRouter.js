@@ -24,6 +24,10 @@ router.get("/count/reviews", auth, validateRole, (req,res,next) => {
     gameReviewsProxy(req,res,next);
 })
 
+router.get("/user/:id/reviews", auth, validateRole, (req,res,next) => {
+    gameReviewsProxy(req,res,next);
+})
+
 router.get("/", (req,res,next)=>{
     gameReviewsProxy(req,res,next);
 });
