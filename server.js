@@ -149,7 +149,7 @@ app.get("/:user_id/username",async (req,res) => {
     if(user){
         res.status(200).json({username:user.username});
     }else{
-        req.status(400).send("user not found");
+        res.status(400).send("user not found");
     }
 })
 
