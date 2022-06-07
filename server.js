@@ -13,6 +13,7 @@ const gameRouter = require('./routes/gameReviewsRouter.js');
 const userInfoRouter = require("./routes/userInfoRouter");
 const searchRouter = require("./routes/searchRouter");
 const feedRouter = require('./routes/feedRouter');
+const streamRouter = require('./routes/streamRouter');
 
 
 //Cors rule
@@ -27,6 +28,7 @@ app.use('/games',gameRouter);
 app.use('/user',userInfoRouter);
 app.use('/search', searchRouter);
 app.use('/feed', feedRouter);
+app.use('/stream', streamRouter);
 
 
 
