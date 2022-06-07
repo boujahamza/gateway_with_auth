@@ -3,6 +3,7 @@ require("./config/database").connect();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const express = require('express');
 
@@ -11,11 +12,13 @@ const router = require('./routes/articlesRouter.js');
 const gameRouter = require('./routes/gameReviewsRouter.js');
 const userInfoRouter = require("./routes/userInfoRouter");
 const searchRouter = require("./routes/searchRouter");
+const feedRouter = require('./routes/feedRouter');
 
 
 //Cors rule
 
 app.use(cors());
+app.use(express.json());
 
 app.use('/article',router.ArticleRouter);
 app.use('/images',router.ImageRouter);
@@ -23,10 +26,10 @@ app.use('/events',router.EventRouter);
 app.use('/games',gameRouter);
 app.use('/user',userInfoRouter);
 app.use('/search', searchRouter);
+app.use('/feed', feedRouter);
 
 
 
-app.use(express.json());
 
 //Duration of user session before expiration of token (must be in hours!)
 let sessionLength = "1h";
@@ -156,10 +159,20 @@ app.get("/:user_id/username",async (req,res) => {
 const auth = require("./middleware/auth");
 const validateRole = require("./middleware/roleValidation");
 
-app.get("/users", auth, validateRole, async (req,res)=> {
+app.get("/users/count", auth, validateRole, async (req,res)=> {
     console.log("recieved request for number of users");
     const number = await User.find().count();
     res.status(200).send(number.toString());
+});
+
+app.get("/users", auth, validateRole, async (req,res)=> {
+    console.log("recieved request for list of users");
+    let users = await User.find();
+    users = users.map(user => {
+        user.password = "";
+        return user;
+    })
+    res.status(200).send(users);
 });
 
 const { API_PORT } = process.env;
