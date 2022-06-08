@@ -22,6 +22,26 @@ const streamProxy = httpProxy("http://localhost:4006", {
     }
 })
 
+router.get("/lives/:id", (req,res,next) => {
+    streamProxy(req,res,next);
+});
+
+router.get("/lives", (req,res,next) => {
+    streamProxy(req,res,next);
+});
+
+router.get("/vods/:id", (req,res,next) => {
+    streamProxy(req,res,next);
+});
+
+router.get("/vods", (req,res,next) => {
+    streamProxy(req,res,next);
+});
+
+router.get("/streams/:id", (req,res,next) => {
+    streamProxy(req,res,next);
+})
+
 router.get("/", (req,res,next) => {
     streamProxy(req,res,next);
 })
