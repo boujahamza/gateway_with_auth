@@ -37,8 +37,8 @@ EventRouter
     .get('/events/', (req, res, next) => { Proxy(req, res, next); })
     .get('/events/:user_id', (req, res, next) => { Proxy(req, res, next); })
     .post("/events", auth, verifyRole, (req, res, next) => { Proxy(req, res, next); })
-    .post("/events/:event_id", auth,(req, res, next) => { 
-        Proxy(req, res, next); })
+    .post("/events/:event_id", auth,(req, res, next) => { Proxy(req, res, next); })
+    .put("/events/:event_id", auth,(req, res, next) => { Proxy(req, res, next); })
 
     .delete("/events/:event_id",auth,validateRole, (req, res, next) => { Proxy(req, res, next); })
     .get("/events/count/", auth, validateRole, (req, res, next) => { Proxy(req, res, next); })

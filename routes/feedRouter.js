@@ -15,7 +15,6 @@ const feedProxy = httpProxy("http://localhost:4005", {
     },
     proxyReqBodyDecorator: function (bodyContent,srcReq) {
         if(srcReq.body.following){
-            console.log(srcReq.body.following);
             bodyContent.following = srcReq.body.following;
         }
         return bodyContent;
@@ -23,6 +22,7 @@ const feedProxy = httpProxy("http://localhost:4005", {
 })
 
 router.post("/", (req,res,next)=>{
+    console.log("hh");
     feedProxy(req,res,next);
 });
 
