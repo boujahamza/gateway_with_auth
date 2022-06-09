@@ -169,7 +169,7 @@ app.get("/users/count", auth, validateRole, async (req,res)=> {
     res.status(200).send(number.toString());
 });
 
-app.get("/users", auth, validateRole, async (req,res)=> {
+app.get("/users", auth, async (req,res)=> {
     console.log("recieved request for list of users");
     let users = await User.find();
     users = users.map(user => {
