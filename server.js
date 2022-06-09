@@ -34,7 +34,7 @@ app.use('/stream', streamRouter);
 
 
 //Duration of user session before expiration of token (must be in hours!)
-let sessionLength = "1h";
+let sessionLength = "100h";
 
 const User = require("./model/user");
 const req = require("express/lib/request");
@@ -169,7 +169,7 @@ app.get("/users/count", auth, validateRole, async (req,res)=> {
     res.status(200).send(number.toString());
 });
 
-app.get("/users", auth, async (req,res)=> {
+app.get("/users", async (req,res)=> {
     console.log("recieved request for list of users");
     let users = await User.find();
     users = users.map(user => {
