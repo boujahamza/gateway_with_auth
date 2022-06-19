@@ -11,7 +11,9 @@ const httpProxy = require('express-http-proxy');
 const auth = require('../middleware/auth');
 const validateRole = require('../middleware/roleValidation');
 
-const Proxy = httpProxy('http://localhost:3000', {
+const ARTICLE_URL=process.env.ARTICLE_URL;
+
+const Proxy = httpProxy(ARTICLE_URL, {
     proxyReqOptDecorator: function (proxyReqOpts, srcReq) {
         if (srcReq.user) {
             proxyReqOpts.headers["user"] = JSON.stringify(srcReq.user);

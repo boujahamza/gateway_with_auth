@@ -1,5 +1,0 @@
-gitops:
-  manifest_projects:
-  - id: "streamio1/gateway_with_auth"
-    path:
-    - glob: 'manifests/*.{yaml,yml,json}'

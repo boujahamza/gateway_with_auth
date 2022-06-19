@@ -6,7 +6,9 @@ const httpProxy = require('express-http-proxy');
 
 const auth = require('../middleware/auth');
 
-const gameReviewsProxy = httpProxy("http://localhost:4003", {
+const USER_INFOS_URL=process.env.USER_INFOS_URL;
+
+const gameReviewsProxy = httpProxy(USER_INFOS_URL, {
     proxyReqOptDecorator: function (proxyReqOpts, srcReq) {
         if(srcReq.user) {
             proxyReqOpts.headers["user"] = JSON.stringify(srcReq.user);

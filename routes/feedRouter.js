@@ -5,8 +5,9 @@ const router = express.Router();
 const httpProxy = require('express-http-proxy');
 
 const auth = require('../middleware/auth');
+const FEED_URL=process.env.FEED_URL;
 
-const feedProxy = httpProxy("http://localhost:4005", {
+const feedProxy = httpProxy(FEED_URL, {
     proxyReqOptDecorator: function (proxyReqOpts, srcReq) {
         if(srcReq.user) {
             proxyReqOpts.headers["user"] = JSON.stringify(srcReq.user);

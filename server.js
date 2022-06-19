@@ -53,6 +53,10 @@ async function createAdmin(){
 
 createAdmin();
 //---------------------------------------
+app.get('/',(req,res)=>{
+    res.status(200);
+    res.end();
+})
 
 app.post("/register", async (req, res) => {
     try {
