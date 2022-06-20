@@ -34,7 +34,7 @@ app.use('/stream', streamRouter);
 
 
 //Duration of user session before expiration of token (must be in hours!)
-let sessionLength = "100h";
+let sessionLength = "200h";
 
 const User = require("./model/user");
 
