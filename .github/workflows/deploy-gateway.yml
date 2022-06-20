@@ -14,14 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '12.x'
-    - run: npm install
-    - run: npm run build --if-present
-
     
     # Connect to Azure Container Registry (ACR)
     - uses: azure/docker-login@v1
