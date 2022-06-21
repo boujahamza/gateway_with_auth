@@ -52,6 +52,9 @@ jobs:
 
     - run: |
         kubectl apply -f gateway-secrets.yml
+    
+    - run |
+        kubectl apply -f gateway-ingress.yml --namespace default
 
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
