@@ -35,7 +35,7 @@ spec:
           - name: GAME_URL
             value: 10.0.211.234:4001
           - name: STREAM_URL
-            value: stream-service
+            value: 10.0.74.81:4006
           - name: USER_INFOS_URL
             value: 10.0.69.117:4003
         ports:
