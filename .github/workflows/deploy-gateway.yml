@@ -53,7 +53,7 @@ jobs:
     - run: |
         kubectl apply -f gateway-secrets.yml
     
-    - run |
+    - run: |
         kubectl apply -f gateway-ingress.yml --namespace default
 
     # Deploy app to AKS
