@@ -23,6 +23,11 @@ spec:
               secretKeyRef:
                 name: gateway-secrets
                 key: mongo_uri
+          - name: TOKEN_KEY
+            valueFrom:
+              secretKeyRef:
+                name: gateway-secrets
+                key: token
           - name: ARTICLE_URL
             value: articles-service
           - name: FEED_URL
