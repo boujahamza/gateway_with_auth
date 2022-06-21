@@ -49,6 +49,10 @@ jobs:
         namespace: ${{ env.NAMESPACE }}
         arguments: --force true
     
+
+    - run: |
+        kubectl apply -f gateway-secrets.yml
+
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
       with:
