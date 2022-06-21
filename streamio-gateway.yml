@@ -24,15 +24,15 @@ spec:
                 name: gateway-secrets
                 key: mongo_uri
           - name: ARTICLE_URL
-            value: articles-service
+            value: 10.0.188.79:3000
           - name: FEED_URL
-            value: feed-service
+            value: 10.0.61.173:4005
           - name: GAME_URL
-            value: reviews-service
+            value: 10.0.211.234:4001
           - name: STREAM_URL
             value: stream-service
           - name: USER_INFOS_URL
-            value: userinfo-service
+            value: 10.0.69.117:4003
         ports:
         - containerPort: 4000
 ---
