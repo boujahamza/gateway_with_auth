@@ -1,6 +1,6 @@
 on: [push]
 
-# Environment variables available to all jobs and steps in this workflow streamio.azurecr.io/streamio-backend_gateway
+# Environment variables available to all jobs and steps in this workflow
 env:
   REGISTRY_NAME: streamio
   CLUSTER_NAME: streamioCluster
