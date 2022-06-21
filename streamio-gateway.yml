@@ -17,6 +17,22 @@ spec:
       containers:
       - name: gateway
         image: streamio.azurecr.io/streamio-backend_gateway:v1
+        env:
+          - name: MONGO_URI
+            valueFrom:
+              secretKeyRef:
+                name: gateway-secrets
+                key: mongo_uri
+          - name: ARTICLE_URL
+            value: articles-service
+          - name: FEED_URL
+            value: feed-service
+          - name: GAME_URL
+            value: reviews-service
+          - name: STREAM_URL
+            value: stream-service
+          - name: USER_INFOS_URL
+            value: userinfo-service
         ports:
         - containerPort: 4000
 ---
