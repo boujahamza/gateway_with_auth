@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gateway
-        image: streamio.azurecr.io/streamio-backend_gateway:v1
+        image: streamio.azurecr.io/streamio-backend_gateway:latest
         env:
           - name: MONGO_URI
             valueFrom:
